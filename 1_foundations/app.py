@@ -77,8 +77,8 @@ class Me:
 
     def __init__(self):
         self.openai = OpenAI()
-        self.name = "Ed Donner"
-        reader = PdfReader("me/linkedin.pdf")
+        self.name = "Larry Adams"
+        reader = PdfReader("./me/linkedin.pdf")
         self.linkedin = ""
         for page in reader.pages:
             text = page.extract_text()
@@ -130,5 +130,6 @@ If the user is engaging in discussion, try to steer them towards getting in touc
 
 if __name__ == "__main__":
     me = Me()
-    gr.ChatInterface(me.chat, type="messages").launch()
+    server_name = os.getenv("SERVER_NAME", "127.0.0.1")
+    gr.ChatInterface(me.chat, type="messages").launch(server_name=server_name)
     
